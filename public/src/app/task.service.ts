@@ -22,9 +22,6 @@ export class TaskService {
     }
 
     updateCake(data, id){
-        console.log("got here") 
-        console.log(id)
-        console.log(data)
         return this._http.put(`/api/cake/update/${id}`, data);
     }
 

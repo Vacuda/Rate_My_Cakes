@@ -22,7 +22,8 @@ import { RateComponent } from './rate/rate.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [TaskService],
+  providers: [AppComponent, TaskService],
+//   providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

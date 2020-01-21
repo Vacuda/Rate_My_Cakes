@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../task.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-rate',
@@ -10,54 +11,59 @@ export class RateComponent implements OnInit {
 
     createrating:any;
     errors:any;
-    onecake:any;
+    // onecake:any;
+    cakeforrating:any;
     @Input() cake_id:any;
 
-    constructor(private _httpService: TaskService) { }
+    constructor(
+        private _httpService: TaskService,
+        private appcomponent: AppComponent
+        ){}
 
     ngOnInit() {
         this.createrating = {
             stars: "",
             comment: ""
         }
-        this.getOneCake();
+        this.getRatingCake();
     }
 
-    getOneCake(){
+    getRatingCake(){
         this.errors = null;
         let observable = this._httpService.getOneCake(this.cake_id)
         observable.subscribe(data => {
-            this.onecake = data['results'];
+            this.cakeforrating = data['results'];
 
         });
     }
 
+    changeOneCake(){
+        this.appcomponent.getOneCake(this.cake_id);
+    }
+
     createRating(){
+
         this.errors = null;
         let observable = this._httpService.createRating(this.createrating, this.cake_id)
         observable.subscribe(data => {
             if(data["results"]){
-                this.createrating = {
-                    stars: "",
-                    comment: ""
-                }
-                console.log("created rating")
-                // let observable = this._httpService.updateCake(data["results"], id)
-                // observable.subscribe(data => {
-                //     if(data["results"]){
-                //         this.getOneCake(id);
-                //         this.createrating = {
-                //             stars: "",
-                //             comment: ""
-                //         }
-                //     }
-                //     else if(data["errors"]){
-                //         this.errors = [];
-                //         for(let item in data["errors"]){
-                //             this.errors.push(data["errors"][item]);
-                //         }
-                //     }
-                // })
+          
+                let observable = this._httpService.updateCake(data["results"], this.cake_id)
+                observable.subscribe(data => {
+                    if(data["results"]){
+                        this.appcomponent.getOneCake(this.cake_id);
+                        this.createrating = {
+                            stars: "",
+                            comment: ""
+                        }
+                    }
+                    else if(data["errors"]){
+                        this.errors = [];
+                        for(let item in data["errors"]){
+                            this.errors.push(data["errors"][item]);
+                        }
+                    }
+                })
             }
             else if(data["errors"]){
                 this.errors = [];
