@@ -1,0 +1,105 @@
+
+<div class="container">
+
+    <h1>Rate My Cakes!</h1>
+
+    <div class="row">
+        <div class="col col-4">
+            <div class="dashed">
+                <h4>Submit a Cake</h4>
+                <div class="division"></div>
+                <form (submit)="createCake()">
+                    <div class="form-group">
+                        <label for="baker">Baker Name:</label>
+                        <input name="createcake.baker" [(ngModel)]="createcake.baker" class="form-control" id="baker" placeholder="---">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Image Url:</label>
+                        <input name="createcake.url" [(ngModel)]="createcake.url" class="form-control" id="url" placeholder="---">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col col-8">
+            
+            <div *ngFor="let cake of cakes">
+                <div class="card">
+                    <div class="row">
+                        <div class="col col-6">
+                            <img (click)="getOneCake(cake._id)" src="{{cake.url}}" alt="">
+                        </div>
+                        <div class="col col-6">
+                            <form (submit)="createRating(cake._id)">
+                                <div class="form-group">
+                                    <select name="createrating.stars" [(ngModel)]="createrating.stars" class="form-control" id="stars">
+                                        <option value="" disabled>---</option>
+                                        <option value="1">1 Stars</option>
+                                        <option value="2">2 Stars</option>
+                                        <option value="3">3 Stars</option>
+                                        <option value="4">4 Stars</option>
+                                        <option value="5">5 Stars</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="createrating.comment" [(ngModel)]="createrating.comment" class="form-control" rows="2" id="comment" placeholder="---"></textarea>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Rate This Cake!</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <!-- <div *ngIf="errors">
+        <h4>Errors:</h4>
+        <ul>
+            <div *ngFor="let item of errors">
+                <li class="errors">{{item.message}}</li>
+            </div>
+        </ul>
+
+    </div>
+
+
+
+    <div class="division"></div>
+
+    <button class="btn btn-primary" (click)="getTasks()">Click for Tasks</button>
+
+    <div class="division"></div>
+
+    <div class="centered" *ngFor="let task of tasks">
+
+        <h2><a id="clickable" (click)="getOneTask(task._id)">{{task.title}}</a></h2>
+        <div class="division"></div>
+    </div>
+
+    <app-show *ngIf="onetask" [taskToShow]="onetask"></app-show> -->
+
+    <div class="bottomdashed">
+        <app-show *ngIf="onecake" [cakeToShow]="onecake" [averageToShow]="average"></app-show>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
