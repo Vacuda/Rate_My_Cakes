@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
                     title: "",
                     description: ""
                 }
+                this.getOneCake(data["results"]._id)
+                this.getOneCake(data["results"]._id)
             }
             else if(data["errors"]){
                 this.errors = [];
