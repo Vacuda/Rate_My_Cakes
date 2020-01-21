@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="row">
+        <div class="col col-6">
+            <img (click)="getOneCake(cake._id)" src="{{onecake.url}}" alt="">
+        </div>
+        <div class="col col-6">
+            <form (submit)="createRating()">
+                <div class="form-group">
+                    <select name="createrating.stars" [(ngModel)]="createrating.stars" class="form-control" id="stars">
+                        <option value="" disabled>---</option>
+                        <option value="1">1 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="createrating.comment" [(ngModel)]="createrating.comment" class="form-control" rows="2" id="comment" placeholder="---"></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">Rate This Cake!</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -83,37 +83,37 @@ export class AppComponent implements OnInit {
 
     ///
 
-    createRating(id){
-        this.errors = null;
-        let observable = this._httpService.createRating(this.createrating, id)
-        observable.subscribe(data => {
-            if(data["results"]){
+    // createRating(id){
+    //     this.errors = null;
+    //     let observable = this._httpService.createRating(this.createrating, id)
+    //     observable.subscribe(data => {
+    //         if(data["results"]){
                 
-                let observable = this._httpService.updateCake(data["results"], id)
-                observable.subscribe(data => {
-                    if(data["results"]){
-                        this.getOneCake(id);
-                        this.createrating = {
-                            stars: "",
-                            comment: ""
-                        }
-                    }
-                    else if(data["errors"]){
-                        this.errors = [];
-                        for(let item in data["errors"]){
-                            this.errors.push(data["errors"][item]);
-                        }
-                    }
-                })
-            }
-            else if(data["errors"]){
-                this.errors = [];
-                for(let item in data["errors"]){
-                    this.errors.push(data["errors"][item]);
-                }
-            }
-        });       
-    }
+    //             let observable = this._httpService.updateCake(data["results"], id)
+    //             observable.subscribe(data => {
+    //                 if(data["results"]){
+    //                     this.getOneCake(id);
+    //                     this.createrating = {
+    //                         stars: "",
+    //                         comment: ""
+    //                     }
+    //                 }
+    //                 else if(data["errors"]){
+    //                     this.errors = [];
+    //                     for(let item in data["errors"]){
+    //                         this.errors.push(data["errors"][item]);
+    //                     }
+    //                 }
+    //             })
+    //         }
+    //         else if(data["errors"]){
+    //             this.errors = [];
+    //             for(let item in data["errors"]){
+    //                 this.errors.push(data["errors"][item]);
+    //             }
+    //         }
+    //     });       
+    // }
 
 
 

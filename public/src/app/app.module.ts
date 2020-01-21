@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from './task.service';
 import { FormsModule } from '@angular/forms';
 import { ShowComponent } from './show/show.component';
+import { RateComponent } from './rate/rate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowComponent
+    ShowComponent,
+    RateComponent
   ],
   imports: [
     BrowserModule,
